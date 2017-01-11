@@ -1,8 +1,10 @@
-var path  = require( 'path');
-var Express  = require( 'express');
+var path  = require('path');
+var Express  = require('express');
+var session =  require('express-session');
 var bodyParser = require('body-parser');
 var handlebars  = require( 'express-handlebars');
 var mongoose = require('mongoose');
+var passport = require('passport');
 var BeerScoreModel = require('./mongoModels/BeerScoreModel');
 
 
@@ -19,6 +21,12 @@ const db_url = 'mongodb://'+db_user + ':' + db_key +'@ds141428.mlab.com:41428/'+
 mongoose.connect(db_url);
 
 
+// passport for session authentication
+app.use(session({ secret: 'beerapp'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // templating with handlebars engine;
 var tmplHandlebars = handlebars.create({});
 app.engine('handlebars', tmplHandlebars.engine);
@@ -31,6 +39,20 @@ app.get('/', function(req, res){
   // render the index template with the embedded
   return res.render('index');
 });
+
+
+app.post('/login', function(req, res){
+    // render the index template with the embedded
+    //return res.render('login');
+});
+
+app.post('/signup', function(req, res){
+    // render the index template with the embedded
+    //return res.render('signup');
+});
+
+
+
 
 
 app.get('/scores', function(req, res){

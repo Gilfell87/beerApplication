@@ -10,6 +10,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
 import ScoreList from './ScoreList';
+import {uuid} from 'uuid/v1';
 
 
 const customContentStyle = {
@@ -234,12 +235,15 @@ export default class BeerProfileCreate extends React.Component {
 
     render() {
 
+
+
         return (
-            <MuiTheme>
-                <div>
-                    <Dialog
-                        title="Take your notes"
-                        actions={[
+            <div key={this.props._id || uuid()}>
+                <MuiTheme>
+                    <div>
+                        <Dialog
+                            title="Take your notes"
+                            actions={[
                               <FlatButton
                                   label="Cancel"
 
@@ -251,164 +255,163 @@ export default class BeerProfileCreate extends React.Component {
                                   onClick ={() => {this.handleAdd()}}
                               />
                          ]}
-                        modal={true}
-                        open={this.state.open}
-                        contentStyle={customContentStyle}
-                        autoScrollBodyContent={true}
-                    >
-                        <div className = 'beer-form-style-div'>
-                            <div className = 'col-md-3'>
-                                <ul>
-                                    <li>
-                                        <label>
-                                            Beer
-                                            <input
-                                                className = 'beer-desc-input'
-                                                placeholder= "Write the beer&rsquo;s name"
-                                                defaultValue={this.props.beer}
-                                                onChange={this.handleBeerChange.bind(this)}
-                                                type='text'
-                                            />
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            Style
-                                            <input
-                                                className = 'beer-desc-input'
-                                                placeholder= 'Write the style'
-                                                defaultValue={this.props.type}
-                                                onChange={this.handleBeerTypeChange.bind(this)}
-                                                type='text'
-                                            />
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            Brewery
-                                            <input
-                                                placeholder= 'Who made it'
-                                                className = 'beer-desc-input'
-                                                defaultValue={this.props.brewery}
-                                                onChange={this.handleBreweryChange.bind(this)}
-                                                type='text'
-                                            />
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="container-fluid">
-
+                            modal={true}
+                            open={this.state.open}
+                            contentStyle={customContentStyle}
+                            autoScrollBodyContent={true}
+                        >
+                            <div className = 'beer-form-style-div'>
                                 <div className = 'col-md-3'>
-                                    <div className="value-beer-style slider-value"> {this.state.aromaValue}</div>
-                                    <label>
-                                        Aroma
-                                    </label>
+                                    <ul>
+                                        <li>
+                                            <label>
+                                                Beer
+                                                <input
+                                                    className = 'beer-desc-input'
+                                                    placeholder= "Write the beer&rsquo;s name"
+                                                    defaultValue={this.props.beer}
+                                                    onChange={this.handleBeerChange.bind(this)}
+                                                    type='text'
+                                                />
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                Style
+                                                <input
+                                                    className = 'beer-desc-input'
+                                                    placeholder= 'Write the style'
+                                                    defaultValue={this.props.type}
+                                                    onChange={this.handleBeerTypeChange.bind(this)}
+                                                    type='text'
+                                                />
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                Brewery
+                                                <input
+                                                    placeholder= 'Who made it'
+                                                    className = 'beer-desc-input'
+                                                    defaultValue={this.props.brewery}
+                                                    onChange={this.handleBreweryChange.bind(this)}
+                                                    type='text'
+                                                />
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="container-fluid">
+
+                                    <div className = 'col-md-3'>
+                                        <div className="value-beer-style slider-value"> {this.state.aromaValue}</div>
+                                        <label>
+                                            Aroma
+                                        </label>
                                     <textarea
                                         placeholder= 'What is the aroma you feel?'
                                         defaultValue={this.props.aromaText}
                                         rows = {3}
                                         onChange={this.handleAromaInputChange.bind(this)}
                                     />
-                                    <Slider
-                                        style={{width: '100%'}}
-                                        defaultValue=  {this.props.aromaValue}
-                                        value={this.state.aromaValue}
-                                        onChange={this.handleAromaSlider.bind(this)}
-                                        max = {12}
-                                        step= {1}
-                                    />
+                                        <Slider
+                                            style={{width: '100%'}}
+                                            defaultValue=  {this.props.aromaValue}
+                                            value={this.state.aromaValue}
+                                            onChange={this.handleAromaSlider.bind(this)}
+                                            max = {12}
+                                            step= {1}
+                                        />
 
-                                </div>
-                                <div className = 'col-md-3'>
-                                    <div className="value-beer-style slider-value"> {this.state.flavorValue}</div>
-                                    <label>
-                                        Flavor
-                                    </label>
+                                    </div>
+                                    <div className = 'col-md-3'>
+                                        <div className="value-beer-style slider-value"> {this.state.flavorValue}</div>
+                                        <label>
+                                            Flavor
+                                        </label>
                                     <textarea
                                         placeholder= 'How does it taste?'
                                         rows = {3}
                                         defaultValue={this.props.flavorText}
                                         onChange={this.handleFlavorInputChange.bind(this)}
-                                        />
-                                    <Slider
-                                        style={{width: '100%'}}
-                                        defaultValue={this.props.flavorValue}
-                                        value={this.state.flavorValue}
-                                        onChange={this.handleFlavorSlider.bind(this)}
-                                        max = {20}
-                                        step= {1}
                                     />
+                                        <Slider
+                                            style={{width: '100%'}}
+                                            defaultValue={this.props.flavorValue}
+                                            value={this.state.flavorValue}
+                                            onChange={this.handleFlavorSlider.bind(this)}
+                                            max = {20}
+                                            step= {1}
+                                        />
 
-                                </div>
-                                <div className = 'col-md-3'>
-                                    <div className="value-beer-style slider-value"> {this.state.mouthfeelValue}</div>
-                                    <label>
-                                        Mouthfeel
-                                    </label>
+                                    </div>
+                                    <div className = 'col-md-3'>
+                                        <div className="value-beer-style slider-value"> {this.state.mouthfeelValue}</div>
+                                        <label>
+                                            Mouthfeel
+                                        </label>
                                     <textarea
                                         placeholder= 'How does it make you feel?'
                                         rows = {3}
                                         defaultValue={this.props.mouthfeelText}
                                         onChange={this.handleMouthfeelInputChange.bind(this)}
                                     />
-                                    <Slider
-                                        style={{width: '100%'}}
-                                        defaultValue={this.props.mouthfeelValue}
-                                        value={this.state.mouthfeelValue}
-                                        onChange={this.handleMouthfeelSlider.bind(this)}
-                                        max = {5}
-                                        step= {1}
-                                    />
-                                </div>
-                                <div className = 'col-md-3'>
-                                    <div className="value-beer-style slider-value"> {this.state.appearanceValue}</div>
-                                    <label>
-                                        Appearance
-                                    </label>
+                                        <Slider
+                                            style={{width: '100%'}}
+                                            defaultValue={this.props.mouthfeelValue}
+                                            value={this.state.mouthfeelValue}
+                                            onChange={this.handleMouthfeelSlider.bind(this)}
+                                            max = {5}
+                                            step= {1}
+                                        />
+                                    </div>
+                                    <div className = 'col-md-3'>
+                                        <div className="value-beer-style slider-value"> {this.state.appearanceValue}</div>
+                                        <label>
+                                            Appearance
+                                        </label>
                                     <textarea
                                         placeholder= 'What does it look like?'
                                         rows = {3}
                                         defaultValue={this.props.appearanceText}
                                         onChange={this.handleAppearanceInputChange.bind(this)}
                                     />
-                                    <Slider
-                                        style={{width: '100%'}}
-                                        defaultValue={this.props.appearanceValue}
-                                        value={this.state.appearanceValue}
-                                        onChange={this.handleAppearanceSlider.bind(this)}
-                                        max = {3}
-                                        step= {1}
-                                    />
+                                        <Slider
+                                            style={{width: '100%'}}
+                                            defaultValue={this.props.appearanceValue}
+                                            value={this.state.appearanceValue}
+                                            onChange={this.handleAppearanceSlider.bind(this)}
+                                            max = {3}
+                                            step= {1}
+                                        />
 
-                                </div>
-                                <div className = 'col-md-3'>
-                                    <div className="value-beer-style slider-value"> {this.state.overallValue || 0}</div>
-                                    <label>
-                                        Overall
-                                    </label>
+                                    </div>
+                                    <div className = 'col-md-3'>
+                                        <div className="value-beer-style slider-value"> {this.state.overallValue || 0}</div>
+                                        <label>
+                                            Overall
+                                        </label>
                                     <textarea
                                         placeholder= 'How do you evaluate it at the end?'
                                         defaultValue={this.props.overallText}
                                         rows = {3}
                                         onChange={this.handleOverallInputChange.bind(this)}
                                     />
-                                    <Slider
-                                        style={{width: '100%'}}
-                                        defaultValue={this.props.overallValue}
-                                        value={this.state.overallValue}
-                                        onChange={this.handleOverAllSlider.bind(this)}
-                                        max = {10}
-                                        step= {1}
-                                    />
-
-
+                                        <Slider
+                                            style={{width: '100%'}}
+                                            defaultValue={this.props.overallValue}
+                                            value={this.state.overallValue}
+                                            onChange={this.handleOverAllSlider.bind(this)}
+                                            max = {10}
+                                            step= {1}
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </Dialog>
-                </div>
-            </MuiTheme>
+                        </Dialog>
+                    </div>
+                </MuiTheme>
+            </div>
         );
     }
 }

@@ -111,6 +111,8 @@ div.center-loading{
     font-family: Roboto, sans-serif;;
 }
 
+.beer-form-style-div input[type="email"],
+.beer-form-style-div input[type="password"],
 .beer-form-style-div input[type="text"],
 .beer-form-style-div textarea
 {
@@ -126,6 +128,8 @@ div.center-loading{
     font-family: Roboto, sans-serif;;
 }
 
+.beer-form-style-div input[type="password"]:focus,
+.beer-form-style-div input[type="email"]:focus,
 .beer-form-style-div input[type="text"]:focus,
 .beer-form-style-div textarea:focus,
 .beer-form-style-div select:focus
@@ -157,4 +161,14 @@ div.center-loading{
 .value-beer-style:nth-child(2) {
 
     font-size: 50%;
+}
+
+
+.welcome-message-class{
+
+    background-image:url(../img/logo.png);
+    background-position:center;
+    width:10%;
+    height:10%;
+
 }
